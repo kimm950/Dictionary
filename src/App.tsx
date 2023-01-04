@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useState } from "react";
+import Dictionary from "./Dictionary";
+import "./App.css";
 
 function App() {
+  const [dictionary, setDictionary] = useState(null);
+  const ref = useRef<HTMLInputElement | null>(null);
+  const url = "https://api.dictionaryapi.dev/api/v2/entries/en";
+
+  const handleSearchWord = async (term: string) => {
+    try {
+      const res = await fetch(`${url}/${term}`);
+      const response = await res.json();
+      if (res.status === 404) {
+        return alert(response.title);
+      }
+      setDictionary(response);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      ref.current!.value = "";
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="text"
+        ref={ref}
+        onKeyDown={(e) =>
+          e.code === "Enter" && handleSearchWord(ref.current?.value as string)
+        }
+      />
+      <button onClick={() => handleSearchWord(ref.current?.value as string)}>
+        Search
+      </button>
+      {dictionary ? <Dictionary dictionary={dictionary} /> : null}
     </div>
   );
 }
