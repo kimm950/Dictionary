@@ -10,6 +10,17 @@
 
 .container {
   margin: 3rem 0;
+  animation: fadeIn 4s linear 1 forwards;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .search-input {

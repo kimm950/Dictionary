@@ -3,25 +3,32 @@ import Dictionary from "./Dictionary";
 import "./App.css";
 
 function App() {
-  const [dictionary, setDictionary] = useState(null);
+  const [dictionary, setDictionary] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasDefinition, setHasDefinition] = useState(true)
+
   const ref = useRef<HTMLInputElement | null>(null);
   const url = "https://api.dictionaryapi.dev/api/v2/entries/en";
 
   const handleSearchWord = async (term: string) => {
+    if(!term) return
     try {
+      setIsLoading(true);
       const res = await fetch(`${url}/${term}`);
       const response = await res.json();
       if (res.status === 404) {
-        return alert(response.title);
+        setHasDefinition(false)
+        return 
       }
       setDictionary(response);
+      setHasDefinition(true)
     } catch (error) {
       console.error(error);
     } finally {
       ref.current!.value = "";
+      setIsLoading(false);
     }
   };
-
   return (
     <div className="App">
       <div className="search-header">
@@ -42,7 +49,9 @@ function App() {
         </button>
       </div>
       <div className="container">
-        {dictionary ? <Dictionary dictionary={dictionary} /> : null}
+        {isLoading && <p>Please wait...</p>}
+        {!hasDefinition && !isLoading &&  <p>No Definitions Found...</p>}
+        {(!isLoading && hasDefinition && dictionary) ? <Dictionary dictionary={dictionary} /> : null}
       </div>
     </div>
   );
