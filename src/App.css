@@ -8,6 +8,12 @@
   height: 3rem;
 }
 
+.init-image {
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+
 .container {
   margin: 3rem 0;
 }
@@ -52,7 +58,7 @@
   background: black;
   color: white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -100,6 +106,7 @@
   width: fit-content;
   border-radius: 60px;
 }
+
 .audio-button:hover {
   cursor: pointer;
 }

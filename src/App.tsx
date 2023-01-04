@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Dictionary from "./Dictionary";
 import "./App.css";
+import icon from './dictionary-icon.svg'
 
 function App() {
   const [dictionary, setDictionary] = useState<any>(null);
@@ -54,6 +55,7 @@ function App() {
         </button>
       </div>
       <div className={`container ${showClass()}`}>
+        {!isLoading && hasDefinition && !dictionary ? <img className='init-image' src={icon} /> : null}
         {isLoading && <p>Please wait...</p>}
         {!hasDefinition && !isLoading &&  <p>No Definitions Found...</p>}
         {(!isLoading && hasDefinition && dictionary) ? <Dictionary dictionary={dictionary} /> : null}
