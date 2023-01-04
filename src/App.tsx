@@ -1,28 +1,28 @@
 import React, { useRef, useState } from "react";
 import Dictionary from "./Dictionary";
 import "./App.css";
-import icon from './dictionary-icon.svg'
+import icon from "./dictionary-icon.svg";
 
 function App() {
   const [dictionary, setDictionary] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasDefinition, setHasDefinition] = useState(true)
+  const [hasDefinition, setHasDefinition] = useState(true);
 
   const ref = useRef<HTMLInputElement | null>(null);
   const url = "https://api.dictionaryapi.dev/api/v2/entries/en";
 
   const handleSearchWord = async (term: string) => {
-    if(!term) return
+    if (!term) return;
     try {
       setIsLoading(true);
       const res = await fetch(`${url}/${term}`);
       const response = await res.json();
       if (res.status === 404) {
-        setHasDefinition(false)
-        return 
+        setHasDefinition(false);
+        return;
       }
       setDictionary(response);
-      setHasDefinition(true)
+      setHasDefinition(true);
     } catch (error) {
       console.error(error);
     } finally {
@@ -31,10 +31,13 @@ function App() {
     }
   };
 
-  const showClass = () => { 
-    return dictionary && hasDefinition && !isLoading ? 'show' : ''
-  }
-  
+  const showClass = () => {
+    return dictionary && hasDefinition && !isLoading ? "show" : "";
+  };
+
+  const initState = !isLoading && hasDefinition && !dictionary;
+  const showResult = !isLoading && hasDefinition && dictionary;
+
   return (
     <div className="App">
       <div className="search-header">
@@ -55,10 +58,10 @@ function App() {
         </button>
       </div>
       <div className={`container ${showClass()}`}>
-        {!isLoading && hasDefinition && !dictionary ? <img className='init-image' src={icon} /> : null}
+        {initState && <img className="init-image" src={icon} />}
         {isLoading && <p>Please wait...</p>}
-        {!hasDefinition && !isLoading &&  <p>No Definitions Found...</p>}
-        {(!isLoading && hasDefinition && dictionary) ? <Dictionary dictionary={dictionary} /> : null}
+        {!hasDefinition && !isLoading && <p>No Definitions Found...</p>}
+        {showResult && <Dictionary dictionary={dictionary} />}
       </div>
     </div>
   );
