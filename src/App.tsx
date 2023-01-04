@@ -29,6 +29,11 @@ function App() {
       setIsLoading(false);
     }
   };
+
+  const showClass = () => { 
+    return dictionary && hasDefinition && !isLoading ? 'show' : ''
+  }
+  
   return (
     <div className="App">
       <div className="search-header">
@@ -48,7 +53,7 @@ function App() {
           Search
         </button>
       </div>
-      <div className="container">
+      <div className={`container ${showClass()}`}>
         {isLoading && <p>Please wait...</p>}
         {!hasDefinition && !isLoading &&  <p>No Definitions Found...</p>}
         {(!isLoading && hasDefinition && dictionary) ? <Dictionary dictionary={dictionary} /> : null}

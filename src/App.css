@@ -10,9 +10,12 @@
 
 .container {
   margin: 3rem 0;
-  animation: fadeIn 4s linear 1 forwards;
 }
 
+
+.show {
+  animation: fadeIn 0.8s linear 1 forwards;
+}
 
 @keyframes fadeIn {
   0% {
