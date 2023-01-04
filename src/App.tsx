@@ -24,16 +24,23 @@ function App() {
 
   return (
     <div className="App">
-      <input
-        type="text"
-        ref={ref}
-        onKeyDown={(e) =>
-          e.code === "Enter" && handleSearchWord(ref.current?.value as string)
-        }
-      />
-      <button onClick={() => handleSearchWord(ref.current?.value as string)}>
-        Search
-      </button>
+      <div className="search-header">
+        <input
+          className="search-input"
+          type="text"
+          ref={ref}
+          onKeyDown={(e) =>
+            e.code === "Enter" && handleSearchWord(ref.current?.value as string)
+          }
+          placeholder="search word"
+        />
+        <button
+          className="search-button"
+          onClick={() => handleSearchWord(ref.current?.value as string)}
+        >
+          Search
+        </button>
+      </div>
       {dictionary ? <Dictionary dictionary={dictionary} /> : null}
     </div>
   );

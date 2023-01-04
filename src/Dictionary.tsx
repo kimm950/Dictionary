@@ -1,4 +1,5 @@
 import React from "react";
+import soundImage from "./sound.png";
 
 interface Props {
   dictionary: any[];
@@ -10,22 +11,25 @@ export default function Dictionary({ dictionary }: Props) {
       {dictionary?.map((dic) => {
         return (
           <>
-            <h1>{dic.word}</h1>
-            <span>{dic.phonetic}</span>
+            <div className="word-header">
+              <h1 className="word">{dic.word}</h1>
+              <span className="phonetic">{dic.phonetic}</span>
+            </div>
             {dic.phonetics.map((phn: any) => {
               if (!phn.audio) return;
               let pronunciation = new Audio(phn.audio);
               return (
-                <>
-                  <p>{phn.text}</p>
+                <div className="word-header">
                   <button
+                    className="audio-button"
                     onClick={() => pronunciation.play()}
                     id={phn?.license?.name}
                     key={phn?.license?.name}
                   >
-                    sound
+                    <img className="audio-image" src={soundImage} />
                   </button>
-                </>
+                  <p className="text">{phn.text}</p>
+                </div>
               );
             })}
 
@@ -33,17 +37,19 @@ export default function Dictionary({ dictionary }: Props) {
               {dic?.meanings?.map((meaning: any) => {
                 return (
                   <>
-                    <h2>{meaning.partOfSpeech}</h2>
-                    <>
+                    <h2 className="part-of-speech">{meaning.partOfSpeech}</h2>
+                    <ol>
                       {meaning.definitions.map((def: any) => {
-                        return <p>{def.definition}</p>;
+                        return <li>{def.definition}</li>;
                       })}
-                    </>
+                    </ol>
                     <>
                       {meaning.synonyms.length > 0 && <h3>Synonyms</h3>}
-                      {meaning.synonyms.map((syn: string) => {
-                        return <p>{syn}</p>;
-                      })}
+                      <div className="synonyms">
+                        {meaning.synonyms.map((syn: string) => {
+                          return <div className="synonym">{syn}</div>;
+                        })}
+                      </div>
                     </>
                   </>
                 );
