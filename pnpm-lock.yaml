@@ -11,6 +11,7 @@ specifiers:
   '@types/testing-library__jest-dom': ^5.14.5
   eslint: ^8.31.0
   jest-dom: ^4.0.0
+  prettier: ^2.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-scripts: 5.0.1
@@ -29,6 +30,7 @@ dependencies:
   '@types/react-dom': 18.0.10
   '@types/testing-library__jest-dom': 5.14.5
   eslint: 8.31.0
+  prettier: 2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-scripts: 5.0.1_suhoixrbctjhyfojppfjnc4z4y
@@ -11581,6 +11583,12 @@ packages:
   /prepend-http/2.0.0:
     resolution: {integrity: sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==}
     engines: {node: '>=4'}
+    dev: false
+
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: false
 
   /pretty-bytes/5.6.0:
