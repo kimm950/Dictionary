@@ -35,6 +35,7 @@ function App() {
     return dictionary && hasDefinition && !isLoading ? "show" : "";
   };
 
+  // TODO: CLEANUP STATES
   const initState = !isLoading && hasDefinition && !dictionary;
   const showResult = !isLoading && hasDefinition && dictionary;
 

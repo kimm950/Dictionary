@@ -1,10 +1,12 @@
 import React from "react";
 import soundImage from "./sound.png";
 
+//TODO: CORRECT TYPES
 interface Props {
   dictionary: any[];
 }
 
+//TODO: SPERATE COMPONENTS, DEFINE TYPES
 export default function Dictionary({ dictionary }: Props) {
   return (
     <div>
