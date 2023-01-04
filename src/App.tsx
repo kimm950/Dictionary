@@ -41,7 +41,9 @@ function App() {
           Search
         </button>
       </div>
-      {dictionary ? <Dictionary dictionary={dictionary} /> : null}
+      <div className="container">
+        {dictionary ? <Dictionary dictionary={dictionary} /> : null}
+      </div>
     </div>
   );
 }

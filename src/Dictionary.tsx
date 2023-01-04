@@ -38,7 +38,7 @@ export default function Dictionary({ dictionary }: Props) {
                 return (
                   <>
                     <h2 className="part-of-speech">{meaning.partOfSpeech}</h2>
-                    <ol>
+                    <ol className="definitions">
                       {meaning.definitions.map((def: any) => {
                         return <li>{def.definition}</li>;
                       })}
