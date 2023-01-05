@@ -3,15 +3,51 @@ import Dictionary from "./Dictionary";
 import "./App.css";
 import icon from "./dictionary-icon.svg";
 
+export interface License { 
+  name: string,
+  url: string,
+}
+
+export interface Phonetic { 
+  text: string,
+  audio: string,
+  license: License
+}
+
+export interface Definition { 
+  definition: string
+  example: string
+  synonyms: Synonym[]
+}
+
+type Synonym = string
+
+type SourceUrl = string
+
+export interface Meaning { 
+  definitions: Definition[]
+  partOfSpeech: string,
+  synonyms: Synonym[]
+}
+
+export interface IDictionary { 
+  word: string,
+  license: License
+  meanings: Meaning[]
+  phonetic: string
+  phonetics: Phonetic[]
+  sourceUrls: SourceUrl[]
+}
+
 function App() {
-  const [dictionary, setDictionary] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasDefinition, setHasDefinition] = useState(true);
+  const [dictionary, setDictionary] = useState<IDictionary[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasDefinition, setHasDefinition] = useState<boolean>(true);
 
   const ref = useRef<HTMLInputElement | null>(null);
   const url = "https://api.dictionaryapi.dev/api/v2/entries/en";
 
-  const handleSearchWord = async (term: string) => {
+  const handleSearchWord = async (term: string):Promise<void> => {
     if (!term) return;
     try {
       setIsLoading(true);
@@ -31,7 +67,7 @@ function App() {
     }
   };
 
-  const showClass = () => {
+  const showClass = (): string => {
     return dictionary && hasDefinition && !isLoading ? "show" : "";
   };
 

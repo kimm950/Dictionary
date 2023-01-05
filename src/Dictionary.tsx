@@ -1,9 +1,10 @@
 import React from "react";
 import soundImage from "./sound.png";
+import { IDictionary } from './App'
 
 //TODO: CORRECT TYPES
 interface Props {
-  dictionary: any[];
+  dictionary: IDictionary[];
 }
 
 //TODO: SPERATE COMPONENTS, DEFINE TYPES
