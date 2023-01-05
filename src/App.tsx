@@ -20,9 +20,9 @@ export interface Definition {
   synonyms: Synonym[]
 }
 
-type Synonym = string
+export type Synonym = string
 
-type SourceUrl = string
+export type SourceUrl = string
 
 export interface Meaning { 
   definitions: Definition[]
