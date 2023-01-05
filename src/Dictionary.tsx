@@ -1,12 +1,11 @@
 import Phonetic from "./Phonetic";
 import { IDictionary, IPhonetic, IMeaning, Definition, Synonym } from "./App";
 import Meaning from "./Meaning";
-//TODO: CORRECT TYPES
+
 interface Props {
   dictionary: IDictionary[];
 }
 
-//TODO: SPERATE COMPONENTS, DEFINE TYPES
 export default function Dictionary({ dictionary }: Props) {
   return (
     <div>
@@ -23,8 +22,8 @@ export default function Dictionary({ dictionary }: Props) {
               })}
             </>
             <>
-              {dic?.meanings.map((meaning: IMeaning) => { 
-                return <Meaning meaning={meaning}/>
+              {dic?.meanings.map((meaning: IMeaning) => {
+                return <Meaning meaning={meaning} />;
               })}
             </>
           </>
